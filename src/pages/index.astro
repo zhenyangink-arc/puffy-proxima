@@ -1,20 +1,132 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
+import AppIcon from "../layouts/AppIcon.astro";
+
 ---
 
 <MainLayout title="Puffy-Proxima | 首页">
+  <section
+    class="relative w-full pt-20 pb-20 flex flex-col items-center text-center overflow-hidden bg-white border-b border-gray-50"
+  >
+    <!-- 左下角书本图标 -->
+    <div
+      class="absolute bottom-8 left-4 md:left-12 transform -rotate-12 bg-amber-50/60 border-2 border-gray-900 p-4 rounded-2xl shadow-sm hidden sm:flex items-end gap-1 select-none animate-pulse"
+    >
+      <AppIcon name="book" size={40} color="#d97706" />
+
+      <div
+        class="w-6 h-6 rounded-full bg-gray-900 border-2 border-amber-50 flex items-center justify-center shadow-sm"
+      >
+        <AppIcon
+          name="check"
+          size={16}
+          color="#34d399"
+          strokeWidth={3}
+        />
+      </div>
+    </div>
+
+    <!-- 右下角毕业帽图标 -->
+    <div
+      class="absolute bottom-12 right-4 md:right-12 transform rotate-12 bg-purple-50/60 border-2 border-gray-900 p-4 rounded-2xl shadow-sm hidden sm:flex flex-col items-center select-none"
+    >
+      <div class="flex items-center justify-center gap-1">
+        <AppIcon name="sparkles" size={13} color="#a855f7" />
+
+        <AppIcon
+          name="graduation"
+          size={40}
+          color="#7e22ce"
+          strokeWidth={2.2}
+        />
+
+        <AppIcon name="sparkles" size={13} color="#a855f7" />
+      </div>
+    </div>
+
+    <div class="max-w-4xl w-full flex flex-col items-center px-4 z-10">
+      <!-- 顶部五个 SVG 图标 -->
+      <div class="flex items-center gap-8 mb-10">
+        <div
+          class="w-14 h-14 rounded-full bg-amber-50 border-2 border-gray-950 flex items-center justify-center shadow-sm transform -rotate-6 select-none"
+        >
+          <AppIcon name="code" size={28} color="#d97706" />
+        </div>
+
+        <div
+          class="w-14 h-14 rounded-full bg-blue-50 border-2 border-gray-950 flex items-center justify-center shadow-sm transform rotate-3 select-none"
+        >
+          <AppIcon name="book" size={28} color="#2563eb" />
+        </div>
+
+        <div
+          class="w-14 h-14 rounded-full bg-emerald-50 border-2 border-gray-950 flex items-center justify-center shadow-sm transform -rotate-3 select-none"
+        >
+          <AppIcon name="bot" size={28} color="#059669" />
+        </div>
+
+        <div
+          class="w-14 h-14 rounded-full bg-purple-50 border-2 border-gray-950 flex items-center justify-center shadow-sm transform rotate-6 select-none"
+        >
+          <AppIcon name="file" size={28} color="#9333ea" />
+        </div>
+
+        <div
+          class="w-14 h-14 rounded-full bg-rose-50 border-2 border-gray-950 flex items-center justify-center shadow-sm transform -rotate-12 select-none"
+        >
+          <AppIcon name="map" size={28} color="#e11d48" />
+        </div>
+      </div>
+
+      <h1
+        class="text-4xl sm:text-5xl md:text-6xl font-black text-gray-900 tracking-tighter mb-6 leading-tight max-w-3xl"
+      >
+        韩国留学，从精准规划开始
+
+        <span
+          class="inline-flex items-center gap-2 px-5 py-2 bg-indigo-50 text-indigo-600 rounded-3xl mt-2 border border-indigo-100 shadow-inner"
+        >
+          <span class="w-3 h-3 rounded-full bg-indigo-500 animate-ping"></span>
+          探索韩国留学的更多可能
+        </span>
+      </h1>
+
+      <p
+        class="text-lg md:text-xl text-gray-600 font-medium max-w-2xl leading-relaxed mt-4"
+      >
+        从院校选择、专业规划到语言提升、申请指导，借助专家分析和 AI 智能学习，为您打造一站式韩国留学成长平台
+      </p>
+
+      <div class="flex flex-wrap justify-center gap-x-10 gap-y-6" 
+           style="margin-top: 20px">
+        <a
+          href="#"
+          class="bg-indigo-600 text-white px-8 py-3.5 rounded-xl font-bold hover:bg-indigo-700 transition shadow-lg shadow-indigo-100 text-base"
+        >
+          免费开始使用
+        </a>
+
+        <a
+          href="#"
+          class="bg-gray-50 border border-gray-200 text-gray-700 px-8 py-3.5 rounded-xl font-bold hover:bg-gray-100 transition text-base"
+        >
+          预约演示查看
+        </a>
+      </div>
+    </div>
+  </section>
+
+
   <div class="py-12">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
 
-      <!-- 左侧轮播图 -->
       <div
-        class="col-span-8 min-w-0 h-[400px] relative rounded-3xl overflow-hidden shadow-sm"
+        class="col-span-8 min-w-0 h-[400px] relative rounded-3xl overflow-hidden shadow-sm "
       >
         <div
           id="carousel"
-          class="flex h-full w-full overflow-x-auto snap-x snap-mandatory scroll-smooth no-scrollbar"
+          class="flex h-full w-full overflow-x-auto snap-x snap-mandatory scroll-smooth hover-scrollbar "
         >
-          <!-- 第一页 -->
           <div
             class="w-full h-full flex-shrink-0 snap-center bg-gradient-to-br from-indigo-600 to-blue-700 flex flex-col justify-center items-center text-white p-10"
           >
@@ -24,7 +136,6 @@ import MainLayout from "../layouts/MainLayout.astro";
             </p>
           </div>
 
-          <!-- 第二页 -->
           <div
             class="w-full h-full flex-shrink-0 snap-center bg-gradient-to-br from-emerald-500 to-teal-600 flex flex-col justify-center items-center text-white p-10"
           >
@@ -34,7 +145,6 @@ import MainLayout from "../layouts/MainLayout.astro";
             </p>
           </div>
 
-          <!-- 第三页 -->
           <div
             class="w-full h-full flex-shrink-0 snap-center bg-gradient-to-br from-rose-500 to-pink-600 flex flex-col justify-center items-center text-white p-10"
           >
@@ -45,7 +155,6 @@ import MainLayout from "../layouts/MainLayout.astro";
           </div>
         </div>
 
-        <!-- 左侧切换按钮 -->
         <button
           id="prevButton"
           type="button"
@@ -55,7 +164,6 @@ import MainLayout from "../layouts/MainLayout.astro";
           ‹
         </button>
 
-        <!-- 右侧切换按钮 -->
         <button
           id="nextButton"
           type="button"
@@ -65,7 +173,6 @@ import MainLayout from "../layouts/MainLayout.astro";
           ›
         </button>
 
-        <!-- 页码圆点 -->
         <div class="absolute bottom-5 left-1/2 z-10 flex -translate-x-1/2 gap-2">
           <button
             type="button"
@@ -90,7 +197,6 @@ import MainLayout from "../layouts/MainLayout.astro";
         </div>
       </div>
 
-      <!-- 右侧常用服务 -->
       <div class="lg:col-span-4 flex flex-col gap-4 w-full">
         <div class="font-bold text-gray-900 text-lg mb-1">常用服务</div>
 
@@ -172,7 +278,6 @@ import MainLayout from "../layouts/MainLayout.astro";
     </div>
   </div>
 
-  <!-- 优势说明 -->
   <section class="py-12 border-t border-gray-200">
     <h3 class="text-2xl font-bold text-center mb-10">
       为什么选择 Puffy-Proxima?
@@ -205,7 +310,6 @@ import MainLayout from "../layouts/MainLayout.astro";
     </div>
   </section>
 
-  <!-- AI 提问区域 -->
   <section class="py-16 w-full flex justify-center">
     <div
       class="bg-white p-12 rounded-3xl border border-gray-100 shadow-sm text-center max-w-3xl w-full mx-4"
@@ -215,7 +319,7 @@ import MainLayout from "../layouts/MainLayout.astro";
       </h3>
 
       <p class="text-gray-600 mb-10 text-lg">
-        Puffy-Proxima 智能助手随时为你解答关于学习、项目或技术的任何问题。
+        Puffy-Proxima 智能助手随时为你解答关于 learning、项目或技术的任何问题。
       </p>
 
       <div class="grid grid-cols-1 sm:grid-cols-[1fr,auto] gap-4">
@@ -241,8 +345,6 @@ import MainLayout from "../layouts/MainLayout.astro";
   const dots = document.querySelectorAll<HTMLButtonElement>(".carousel-dot");
 
   let currentSlide: number = 0;
-
-  // 浏览器中的 setInterval 返回 number
   let autoPlayTimer: number | undefined;
 
   function getSlideWidth(): number {

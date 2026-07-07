@@ -1,0 +1,51 @@
+---
+import {
+  BookOpen,
+  GraduationCap,
+  Code2,
+  Bot,
+  FileText,
+  Map as MapIcon,
+  Check,
+  Sparkles,
+} from "@lucide/astro";
+
+const iconMap = {
+  book: BookOpen,
+  graduation: GraduationCap,
+  code: Code2,
+  bot: Bot,
+  file: FileText,
+  map: MapIcon,
+  check: Check,
+  sparkles: Sparkles,
+} as const;
+
+type IconName = keyof typeof iconMap;
+
+interface Props {
+  name: IconName;
+  size?: number;
+  color?: string;
+  strokeWidth?: number;
+  class?: string;
+}
+
+const {
+  name,
+  size = 24,
+  color = "#4f46e5",
+  strokeWidth = 2.2,
+  class: className = "",
+} = Astro.props;
+
+const Icon = iconMap[name];
+---
+
+<Icon
+  size={size}
+  color={color}
+  stroke-width={strokeWidth}
+  class={className}
+  aria-hidden="true"
+/>

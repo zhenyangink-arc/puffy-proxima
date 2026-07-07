@@ -1,77 +1,598 @@
 ---
+
 interface Props {
+
   title: string;
+
 }
+
+
+
 const { title } = Astro.props;
+
 const pathname = Astro.url.pathname;
+
 ---
 
+
+
 <html lang="zh-CN" class="h-full">
+
   <head>
+
     <meta charset="utf-8" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>{title}</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
-    
+
+
+
+    <link
+
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap"
+
+      rel="stylesheet"
+
+    />
+
+
+
     <style is:global>
+
       @import "tailwindcss";
 
+
+
       body {
+
         margin: 0;
+
         padding: 0;
+
         min-height: 100vh;
+
         display: grid;
+
         grid-template-rows: auto 1fr auto;
-        font-family: 'Noto Sans SC', sans-serif;
+
+        font-family: "Noto Sans SC", sans-serif;
+
         background-color: #f9fafb;
+
         color: #1f2937;
+
       }
 
-      /* 核心：防崩布局滚动条方案 */
+
+
       .hover-scrollbar {
+
         overflow-x: auto;
-        scrollbar-width: none; /* Firefox */
+
+        scrollbar-width: none;
+
       }
-      
+
+
+
       .hover-scrollbar::-webkit-scrollbar {
+
         height: 8px;
+
         background: transparent;
+
       }
+
+
 
       .hover-scrollbar::-webkit-scrollbar-thumb {
+
         background: transparent;
+
         border-radius: 4px;
+
         transition: background 0.3s;
+
       }
+
+
 
       .hover-scrollbar:hover::-webkit-scrollbar-thumb {
+
         background: #cbd5e1;
+
       }
+
+
+
+      /* 所有下拉菜单统一样式 */
+
+      .dropdown-panel {
+
+        width: 220px !important;
+
+      }
+
+
+
+      .dropdown-item {
+
+        display: block !important;
+
+        padding: 18px 36px !important;
+
+        line-height: 1.5 !important;
+
+        white-space: nowrap;
+
+        font-size: 15px;
+
+        transition: all 0.2s ease;
+
+      }
+
+
+
+      .dropdown-item:hover {
+
+        background-color: #eef2ff;
+
+        color: #4f46e5;
+
+      }
+      
+       
+      
+
     </style>
+
   </head>
 
+
+
   <body>
-    <nav class="bg-white border-b border-gray-200">
-      <div style="max-width: 1280px; margin: 0 auto; padding: 20px 40px; display: flex; justify-content: space-between; align-items: center;">
-        <span class="text-xl font-bold tracking-tight text-indigo-600">元智教育</span>
-        <div class="flex items-center gap-6 font-medium">
-          <a href="/" class={`px-4 py-2 rounded-lg transition border ${pathname === '/' ? 'border-gray-300 bg-gray-50' : 'border-transparent'}`}>首页</a>
-          <a href="/projects" class="px-4 py-2 rounded-lg transition border border-transparent">项目</a>
-          <a href="/contact" class="px-4 py-2 rounded-lg transition border border-transparent">联系我们</a>
+
+    <nav class="sticky top-0 z-50 border-b border-gray-200 bg-white shadow-sm">
+
+      <div
+
+        style="
+
+          max-width: 1280px;
+
+          margin: 0 auto;
+
+          padding: 0 40px;
+
+          height: 72px;
+
+          display: flex;
+
+          justify-content: space-between;
+
+          align-items: center;
+
+        "
+
+      >
+
+        <a
+
+          href="/"
+
+          class="text-xl font-black tracking-tighter text-indigo-600 transition hover:text-indigo-700"
+
+        >
+
+          PUFFY<span class="text-gray-900">.</span>
+
+        </a>
+
+
+
+        <div class="flex items-center gap-6 font-medium text-gray-600">
+
+          <a
+
+            href="/"
+
+            class={`rounded-lg px-3 py-2 transition ${
+
+              pathname === "/"
+
+                ? "bg-indigo-50 text-indigo-600"
+
+                : "hover:bg-gray-50 hover:text-indigo-600"
+
+            }`}
+
+          >
+
+            首页
+
+          </a>
+
+
+
+          <!-- 产品 -->
+
+          <div class="group relative">
+
+            <button
+
+              type="button"
+
+              class="flex items-center gap-1 rounded-lg px-3 py-2 transition hover:text-indigo-600"
+
+            >
+
+              产品
+
+              <svg
+
+                class="h-4 w-4 opacity-50"
+
+                fill="none"
+
+                stroke="currentColor"
+
+                viewBox="0 0 24 24"
+
+              >
+
+                <path
+
+                  stroke-linecap="round"
+
+                  stroke-linejoin="round"
+
+                  stroke-width="2"
+
+                  d="M19 9l-7 7-7-7"
+
+                />
+
+              </svg>
+
+            </button>
+
+
+
+            <div class="dropdown-panel absolute left-0 z-50 hidden pt-2 group-hover:block">
+
+              <div class="overflow-hidden rounded-xl border border-gray-100 bg-white py-2 shadow-xl">
+
+                <a href="/products/saas" class="dropdown-item">
+
+                  SaaS 系统
+
+                </a>
+
+                <a href="/products/api" class="dropdown-item">
+
+                  API 服务
+
+                </a>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+
+          <!-- 解决方案 -->
+
+          <div class="group relative">
+
+            <button
+
+              type="button"
+
+              class="flex items-center gap-1 rounded-lg px-3 py-2 transition hover:text-indigo-600"
+
+            >
+
+              解决方案
+
+              <svg
+
+                class="h-4 w-4 opacity-50"
+
+                fill="none"
+
+                stroke="currentColor"
+
+                viewBox="0 0 24 24"
+
+              >
+
+                <path
+
+                  stroke-linecap="round"
+
+                  stroke-linejoin="round"
+
+                  stroke-width="2"
+
+                  d="M19 9l-7 7-7-7"
+
+                />
+
+              </svg>
+
+            </button>
+
+
+
+            <div class="dropdown-panel absolute left-0 z-50 hidden pt-2 group-hover:block">
+
+              <div class="overflow-hidden rounded-xl border border-gray-100 bg-white py-2 shadow-xl">
+
+                <a href="/solutions/enterprise" class="dropdown-item">
+
+                  企业级架构
+
+                </a>
+
+                <a href="/solutions/automation" class="dropdown-item">
+
+                  流程自动化
+
+                </a>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+
+          <!-- 学习资源 -->
+
+          <div class="group relative">
+
+            <button
+
+              type="button"
+
+              class="flex items-center gap-1 rounded-lg px-3 py-2 transition hover:text-indigo-600"
+
+            >
+
+              学习资源
+
+              <svg
+
+                class="h-4 w-4 opacity-50"
+
+                fill="none"
+
+                stroke="currentColor"
+
+                viewBox="0 0 24 24"
+
+              >
+
+                <path
+
+                  stroke-linecap="round"
+
+                  stroke-linejoin="round"
+
+                  stroke-width="2"
+
+                  d="M19 9l-7 7-7-7"
+
+                />
+
+              </svg>
+
+            </button>
+
+
+
+            <div class="dropdown-panel absolute left-0 z-50 hidden pt-2 group-hover:block">
+
+              <div class="overflow-hidden rounded-xl border border-gray-100 bg-white py-2 shadow-xl">
+
+                <a href="/docs" class="dropdown-item">
+
+                  开发文档
+
+                </a>
+
+                <a href="/blog" class="dropdown-item">
+
+                  技术博客
+
+                </a>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+
+          <!-- 定价 -->
+
+          <div class="group relative">
+
+            <button
+
+              type="button"
+
+              class="flex items-center gap-1 rounded-lg px-3 py-2 transition hover:text-indigo-600"
+
+            >
+
+              定价
+
+              <svg
+
+                class="h-4 w-4 opacity-50"
+
+                fill="none"
+
+                stroke="currentColor"
+
+                viewBox="0 0 24 24"
+
+              >
+
+                <path
+
+                  stroke-linecap="round"
+
+                  stroke-linejoin="round"
+
+                  stroke-width="2"
+
+                  d="M19 9l-7 7-7-7"
+
+                />
+
+              </svg>
+
+            </button>
+
+
+
+            <div class="dropdown-panel absolute left-0 z-50 hidden pt-2 group-hover:block">
+
+              <div class="overflow-hidden rounded-xl border border-gray-100 bg-white py-2 shadow-xl">
+
+                <a href="/pricing/basic" class="dropdown-item">
+
+                  基础版
+
+                </a>
+
+                <a href="/pricing/pro" class="dropdown-item">
+
+                  专业版
+
+                </a>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+
+          <a
+
+            href="/contact"
+
+            class={`rounded-lg px-3 py-2 transition ${
+
+              pathname === "/contact"
+
+                ? "bg-indigo-50 text-indigo-600"
+
+                : "hover:bg-gray-50 hover:text-indigo-600"
+
+            }`}
+
+          >
+
+            联系我们
+
+          </a>
+
         </div>
+
+
+
+        <div class="flex items-center gap-4">
+
+          <a
+
+            href="/login"
+
+            class="inline-flex h-10 w-10 items-center justify-center rounded-md text-sm font-medium text-gray-600 transition duration-200 hover:scale-110 hover:bg-gray-200 hover:text-gray-900"
+
+          >
+
+            登录
+
+          </a>
+
+
+
+          <a
+           href="#"
+            class="inline-flex items-center justify-center rounded-full bg-green-600 text-sm font-bold text-white shadow-md transition hover:bg-green-700"
+          style="min-width: 20px; height: 30px; padding: 0 10px;"
+           >
+            加入我们
+           </a>
+
+        </div>
+
       </div>
+
     </nav>
 
-    <main style="max-width: 1280px; width: 100%; margin: 0 auto; padding: 40px;">
+
+
+    <main
+
+      style="
+
+        max-width: 1280px;
+
+        width: 100%;
+
+        margin: 0 auto;
+
+        padding: 40px;
+
+      "
+
+    >
+
       <slot />
+
     </main>
 
-    <footer class="bg-gray-50 border-t border-gray-200">
-      <div style="max-width: 1280px; margin: 0 auto; padding: 20px; text-align: center; color: #6b7280; font-size: 0.875rem;">
+
+
+    <footer class="border-t border-gray-200 bg-gray-50">
+
+      <div
+
+        style="
+
+          max-width: 1280px;
+
+          margin: 0 auto;
+
+          padding: 20px;
+
+          text-align: center;
+
+          color: #6b7280;
+
+          font-size: 0.875rem;
+
+        "
+
+      >
+
         &copy; 2026 Puffy-Proxima Company. All rights reserved.
+
       </div>
+
     </footer>
+
   </body>
-</html>
+
+</html> 
